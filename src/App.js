@@ -1,16 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function App() {
   const profiles = [
     { name: "Taro", age: 10},
     { name: "Hanako", age: 5},
-    { name:"noName"}
+    { name:"noName", age: 3}
   ]
   return (
     <React.Fragment>
       {
-          profiles.map((profile) => {
-            return <User name={profile.name} age={profile.age}/>
+          profiles.map((profile, index) => {
+            return <User name={profile.name} age={profile.age} key={index}/>
           })
       }
     </React.Fragment>
@@ -18,12 +19,14 @@ function App() {
   
 }
 
+
 function User(props) {
-  return <div>Hi, I am {props.name}, and {props.age} years old</div>
+  return <div>Hi, I am {props.name}, and {props.age} years old.</div>
 }
 
-User.defaultProps = {
-  age:1
+User.propTypes = {
+  name: PropTypes.string,
+  age : PropTypes.number.isRequired
 }
 
 export default App;
